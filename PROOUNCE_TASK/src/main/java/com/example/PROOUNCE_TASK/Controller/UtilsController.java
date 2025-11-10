@@ -27,6 +27,38 @@ public class UtilsController {
     public ResponseEntity<RespoceStucture<UniqueCharResponse>> getFirstUniqueChar(
             @RequestBody UniqueCharRequest request) {
         
+    	/*
+    	 http://localhost:8080/utils/first-unique-char
+    	 i/p    - 1
+    	 
+    	 {
+    "text": "swiss"
+}
+    	 
+    	 o/p
+    	 {
+    "satuscode": 200,
+    "message": "Calculation Complete",
+    "data": {
+        "firstUnique": "w"
+    }
+}
+
+	i/p    - 2
+	{
+    "text": "aabbs"
+}
+
+o/p   - 2
+{
+    "satuscode": 200,
+    "message": "Calculation Complete",
+    "data": {
+        "firstUnique": "s"
+    }
+}
+    	 */
+    	
         Character uniqueChar = utilsService.findFirstUniqueChar(request.getText());
         UniqueCharResponse responseData = new UniqueCharResponse(uniqueChar);
         

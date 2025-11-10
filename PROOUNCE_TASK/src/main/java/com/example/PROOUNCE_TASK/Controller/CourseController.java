@@ -28,6 +28,9 @@ public class CourseController {
     // Part A: GET /courses/{id}
     @GetMapping("/{id}")
     public ResponseEntity<RespoceStucture<Course>> getCourseById(@PathVariable Long id) {
+    	/*
+    	 http://localhost:8080/courses/101 here we hard code 101 
+    	 */
         Course course = courseDAO.findCourseById(id);
         courseStructure.setSatuscode(HttpStatus.OK.value());
         courseStructure.setMessage("Course Found");
@@ -39,6 +42,43 @@ public class CourseController {
     @GetMapping
     public ResponseEntity<RespoceStucture<List<Course>>> getCoursesByIds(
             @RequestParam("ids") String ids) {
+    	/*
+    	 http://localhost:8080/courses  ==>Params (Keys) [ids in values 101.102.103.104.105
+    	     	 */
+    	/*
+    	 {
+    "satuscode": 200,
+    "message": "Courses Found",
+    "data": [
+        {
+            "id": 101,
+            "name": "Java Fundamentals",
+            "professor": "Dr. Smith"
+        },
+        {
+            "id": 102,
+            "name": "Spring Boot Microservices",
+            "professor": "Prof. Johnson"
+        },
+        {
+            "id": 103,
+            "name": "Database Systems",
+            "professor": "Dr. Lee"
+        },
+        {
+            "id": 104,
+            "name": "React Basics",
+            "professor": "Ms. Brown"
+        },
+        {
+            "id": 105,
+            "name": "Cloud Computing",
+            "professor": "Mr. Davis"
+        }
+    ]
+}
+    	 * */
+    	
         
         // As per PDF, delimiter is "." [cite: 25]
         List<Long> courseIds = Arrays.stream(ids.split("\\."))
